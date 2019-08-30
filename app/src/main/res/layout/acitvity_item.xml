@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="10dp"
     app:cardBackgroundColor="#fff"
     app:cardCornerRadius="20dp"
     tools:context=".SearchActivity">
@@ -15,8 +16,8 @@
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="#fff"
+            android:layout_height="50dp"
+            android:background="#ff5722"
             android:orientation="horizontal">
 
             <TextView
@@ -26,6 +27,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="Tehran"
+                android:textColor="#fff"
                 android:textSize="20sp" />
 
             <TextView
@@ -35,6 +37,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="9999-99-99"
+                android:textColor="#fff"
                 android:textSize="20sp" />
         </LinearLayout>
 
@@ -55,7 +58,8 @@
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
                     android:layout_weight="2"
-                    android:scaleType="centerCrop" />
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/a01n" />
 
                 <TextView
                     android:id="@+id/txtWeatherDescription"
