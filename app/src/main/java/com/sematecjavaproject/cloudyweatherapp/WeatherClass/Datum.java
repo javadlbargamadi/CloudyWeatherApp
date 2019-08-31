@@ -92,7 +92,7 @@ public class Datum {
     private Weather weather;
     @SerializedName("max_temp")
     @Expose
-    private Integer maxTemp;
+    private Double maxTemp;
     @SerializedName("moonset_ts")
     @Expose
     private Integer moonsetTs;
@@ -336,11 +336,11 @@ public class Datum {
         this.weather = weather;
     }
 
-    public Integer getMaxTemp() {
+    public Double getMaxTemp() {
         return maxTemp;
     }
 
-    public void setMaxTemp(Integer maxTemp) {
+    public void setMaxTemp(Double maxTemp) {
         this.maxTemp = maxTemp;
     }
 

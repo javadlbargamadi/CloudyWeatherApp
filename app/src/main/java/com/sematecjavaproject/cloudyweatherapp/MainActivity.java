@@ -11,7 +11,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.sematecjavaproject.cloudyweatherapp.WeatherClass.Datum;
+import com.sematecjavaproject.cloudyweatherapp.WeatherClass.WeatherbitClass;
+
+import org.json.JSONObject;
+
 import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +29,16 @@ public class MainActivity extends AppCompatActivity {
     ItemAdapterActivity itemAdapterActivity;
     DrawerLayout drawerLayout;
     Button btnChangeCity;
+
+    String url;
+
+    AsyncHttpClient asyncHttpClient;
+
+    Gson gson;
+
+    WeatherbitClass weatherbitClass;
+
+    List<Datum> datumList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +48,31 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         drawerLayout = findViewById(R.id.drawerLayout);
         btnChangeCity = findViewById(R.id.btnChangeCity);
-        itemAdapterActivity = new ItemAdapterActivity();
 
-        recyclerView.setAdapter(itemAdapterActivity);
-        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, RecyclerView.VERTICAL, false));
+        url = "https://api.weatherbit.io/v2.0/forecast/daily?city=Tehran,IR&key=b1790b057c914f13a2ee6fb142412271";
+
+        asyncHttpClient = new AsyncHttpClient();
+        asyncHttpClient.get(url, new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+
+                gson = new Gson();
+
+                weatherbitClass = gson.fromJson(response.toString(), WeatherbitClass.class);
+                datumList = weatherbitClass.getData();
+
+                itemAdapterActivity = new ItemAdapterActivity(datumList);
+                recyclerView.setAdapter(itemAdapterActivity);
+                recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, RecyclerView.VERTICAL, false));
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+            }
+        });
 
         btnChangeCity.setOnClickListener(new View.OnClickListener() {
             @Override

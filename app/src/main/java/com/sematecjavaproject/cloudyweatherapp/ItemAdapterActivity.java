@@ -1,13 +1,29 @@
 package com.sematecjavaproject.cloudyweatherapp;
 
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.sematecjavaproject.cloudyweatherapp.WeatherClass.Datum;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
+
 public class ItemAdapterActivity extends RecyclerView.Adapter<ItemAdapterActivity.ItemAdapterViewHolder> {
+
+    List<Datum> datumList;
+
+    public ItemAdapterActivity(List<Datum> weatherList) {
+
+        datumList = weatherList;
+    }
 
     @NonNull
     @Override
@@ -21,6 +37,23 @@ public class ItemAdapterActivity extends RecyclerView.Adapter<ItemAdapterActivit
     @Override
     public void onBindViewHolder(@NonNull ItemAdapterViewHolder holder, int position) {
 
+        String date;
+        String weatherIcon;
+        String weatherDescription;
+        Double minWeather;
+        Double maxWeather;
+
+        date = datumList.get(position).getValidDate();
+        holder.txtDate.setText(date);
+        weatherIcon = datumList.get(position).getWeather().getIcon();
+        weatherIcon = "https://www.weatherbit.io/static/img/icons/" + weatherIcon + ".png";
+        Picasso.get().load(weatherIcon).into(holder.imgWeatherIcon);
+        weatherDescription = datumList.get(position).getWeather().getDescription();
+        holder.txtWeatherDescription.setText(weatherDescription);
+        minWeather = datumList.get(position).getMinTemp();
+        holder.txtMinWeather.setText(minWeather.toString() + " °C");
+        maxWeather = datumList.get(position).getMaxTemp();
+        holder.txtMaxWeather.setText(maxWeather.toString() + " °C");
     }
 
     @Override
@@ -30,8 +63,22 @@ public class ItemAdapterActivity extends RecyclerView.Adapter<ItemAdapterActivit
 
     class ItemAdapterViewHolder extends RecyclerView.ViewHolder {
 
+        TextView txtCity;
+        TextView txtDate;
+        ImageView imgWeatherIcon;
+        TextView txtWeatherDescription;
+        TextView txtMinWeather;
+        TextView txtMaxWeather;
+
         public ItemAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            txtCity = itemView.findViewById(R.id.txtCity);
+            txtDate = itemView.findViewById(R.id.txtDate);
+            imgWeatherIcon = itemView.findViewById(R.id.imgWeatherIcon);
+            txtWeatherDescription = itemView.findViewById(R.id.txtWeatherDescription);
+            txtMinWeather = itemView.findViewById(R.id.txtMinWeather);
+            txtMaxWeather = itemView.findViewById(R.id.txtMaxWeather);
         }
     }
 }
