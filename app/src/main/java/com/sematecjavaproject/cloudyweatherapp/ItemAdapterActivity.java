@@ -19,10 +19,12 @@ import java.util.List;
 public class ItemAdapterActivity extends RecyclerView.Adapter<ItemAdapterActivity.ItemAdapterViewHolder> {
 
     List<Datum> datumList;
+    String cityName;
 
-    public ItemAdapterActivity(List<Datum> weatherList) {
+    public ItemAdapterActivity(List<Datum> weatherList, String cityNameList) {
 
         datumList = weatherList;
+        cityName = cityNameList;
     }
 
     @NonNull
@@ -37,12 +39,15 @@ public class ItemAdapterActivity extends RecyclerView.Adapter<ItemAdapterActivit
     @Override
     public void onBindViewHolder(@NonNull ItemAdapterViewHolder holder, int position) {
 
+        String city;
         String date;
         String weatherIcon;
         String weatherDescription;
         Double minWeather;
         Double maxWeather;
 
+        city = cityName;
+        holder.txtCity.setText(city);
         date = datumList.get(position).getValidDate();
         holder.txtDate.setText(date);
         weatherIcon = datumList.get(position).getWeather().getIcon();

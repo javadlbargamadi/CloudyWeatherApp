@@ -42,7 +42,7 @@ public class SplashSpeedActivity extends AppCompatActivity {
                 @Override
                 public void run() {
 
-                    Intent splashSpeedToMainActivity = new Intent(SplashSpeedActivity.this, MainActivity.class);
+                    Intent splashSpeedToMainActivity = new Intent(SplashSpeedActivity.this, StartActivity.class);
                     startActivity(splashSpeedToMainActivity);
                     finish();
                 }
