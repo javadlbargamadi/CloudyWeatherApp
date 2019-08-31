@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Cloudy Weather App</string>
+    <string name="enter_your_city_name">Enter Your City Name</string>
+    <string name="forecast">forecast</string>
+    <string name="developer">Developed By Javad Bargamadi</string>
+    <string name="cloudy">cloudy</string>
+    <string name="search_your_city">Search Your City</string>
 </resources>

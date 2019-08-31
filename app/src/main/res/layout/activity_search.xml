@@ -22,7 +22,7 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:cardBackgroundColor="#ff5722"
+            app:cardBackgroundColor="@color/deepOrange500"
             app:cardCornerRadius="40dp">
 
             <LinearLayout
@@ -39,9 +39,9 @@
                     android:background="@null"
                     android:focusedByDefault="true"
                     android:gravity="center"
-                    android:hint="Enter Your City Name"
+                    android:hint="@string/enter_your_city_name"
                     android:textColor="#fff"
-                    android:textColorHint="#ffab91"
+                    android:textColorHint="@color/deepOrange200"
                     android:textSize="20sp" />
 
 
@@ -55,7 +55,7 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:text="forecast" />
+            android:text="@string/forecast" />
 
     </LinearLayout>
 
